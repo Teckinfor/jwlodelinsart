@@ -1,0 +1,1 @@
+mysql -uadmin -pGmln5sHvf57M
