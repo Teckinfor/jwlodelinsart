@@ -10,31 +10,10 @@ $servername = "localhost";
 $username = "db_app";
 $password = "JWLodelinsart";
 $db = "users";
-// Create connection
 $conn = new mysqli($servername, $username, $password, $db);
 
-// Check connection
 if ($conn->connect_error) {
     header("Location: /error/");
-}
-
-
-if (isset($_POST["addUser"])) {
-
-    if (!isset($_POST["ID"]) || !isset($_POST["password"]) || !isset($_POST["isAdmin"]) || !isset($_POST["assemblee"])) {
-        header("Location: /error/");
-    }
-
-    $ID = $_POST["ID"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $isAdmin = $_POST["isAdmin"];
-    $assemblee = $_POST["assemblee"];
-
-    $stmt = $conn->prepare('INSERT INTO `users` (`ID`, `password`, `assemblee`, `admin`) VALUES (?, ?, ?, ?);');
-    $stmt->bind_param('ssss', $ID, $password, $assemblee, $isAdmin);
-    $stmt->execute();
-    $stmt->get_result();
-    $stmt->close();
 }
 
 if (isset($_POST["connexion"])) {
@@ -45,7 +24,8 @@ if (isset($_POST["connexion"])) {
     $ID = $_POST["ID"];
     $password = $_POST["password"];
 
-    $stmt = $conn->prepare('SELECT * FROM users;');
+    $stmt = $conn->prepare('SELECT * FROM users where ID = ?;');
+    $stmt->bind_param("s",$ID);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
@@ -103,15 +83,28 @@ if (isset($_POST["connexion"])) {
 }
 
 if (isset($_POST["changepassword"])) {
-    if (!isset($_POST["ID"])) {
-        header("Location: /error/");
-    }
 
-    $stmt = $conn->prepare("UPDATE users SET password = ? WHERE ID = ? ");
-    $mdp = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $stmt->bind_param("ss", $mdp, $_POST["ID"]);
+    $stmt = $conn->prepare('SELECT * FROM users where ID = ?;');
+    $stmt->bind_param("s",$_SESSION["user"]);
     $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
     $stmt->close();
+
+    if (!password_verify($_POST["OldPass"], $row["password"])) {
+        header("Location: /accueil/?notoldpwd");
+        die();
+    } elseif ($_POST["Newpass"] != $_POST["ConfNewpass"]) {
+        header("Location: /accueil/?failconfpwd");
+        die();
+    } else {
+        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE ID = ? ");
+        $mdp = password_hash($_POST["Newpass"], PASSWORD_DEFAULT);
+        $stmt->bind_param("ss", $mdp, $_SESSION["user"]);
+        $stmt->execute();
+        $stmt->close();
+        header("Location: /accueil/?pwdchanged");
+    }
 }
 
 if (isset($_GET["destroy_cookie"])) {

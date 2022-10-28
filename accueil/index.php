@@ -39,9 +39,11 @@ include '../modules/checkPermissions.php';
             z-index: 0;
         }
 
-        pre{
+        pre {
             white-space: pre-wrap;
+            font-family: var(--bs-body-font-family);
         }
+
 
         @media (max-width: 768px) {
 
@@ -64,6 +66,32 @@ include '../modules/checkPermissions.php';
             <div class="p-3">
 
                 <?php
+                if (isset($_GET["pwdchanged"])) {
+                    echo "<div class='alert alert-success' role='alert'>
+                                Le mot de passe a été modifié !
+                            </div>
+                            ";
+                } ?>
+
+                <?php
+                if (isset($_GET["failconfpwd"])) {
+                    echo "<div class='alert alert-danger' role='alert'>
+                                    Le mot de passe n'a pas été modifié ! <br>
+                                    Raison : Les 2 mots de passes ne correspondent pas.
+                            </div>
+                            ";
+                } ?>
+
+                <?php
+                if (isset($_GET["notoldpwd"])) {
+                    echo "<div class='alert alert-danger' role='alert'>
+                    Le mot de passe n'a pas été modifié ! <br>
+                    Raison : Votre ancien mot de passe n'est pas correct.
+                            </div>
+                            ";
+                } ?>
+
+                <?php
 
                 ini_set('display_errors', 'On');
                 ini_set('html_errors', 0);
@@ -82,7 +110,7 @@ include '../modules/checkPermissions.php';
 
                 $issmth = False;
                 while ($row = $result->fetch_assoc()) {
-                    echo '<div class="card mt-2"><div class="card-header d-flex justify-content-between"><h5>';
+                    echo '<div class="card mt-2 rounded-4"><div class="card-header d-flex justify-content-between"><h5>';
                     echo $row["titre"];
                     echo '</h5>';
 
@@ -92,7 +120,7 @@ include '../modules/checkPermissions.php';
                         echo '" aria-label="Close"></button>';
 
                         echo '<div class="modal fade" id="suretodelete';
-                        echo $row["ID"]; 
+                        echo $row["ID"];
                         echo '" tabindex="-1" aria-labelledby="suretodeletelabel';
                         echo $row["ID"];
                         echo '" aria-hidden="true">
@@ -100,7 +128,7 @@ include '../modules/checkPermissions.php';
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="suretodeletelabel';
-                        echo $row["ID"];     
+                        echo $row["ID"];
                         echo '">Confirmation</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -122,7 +150,18 @@ include '../modules/checkPermissions.php';
 
                     echo '</div><div class="card-body">';
                     echo '<pre class="card-text">' . $row["message"] . '</pre>';
-                    echo '</div><div class="card-footer text-muted">Écrit par ';
+
+                    if ($row["fichiers"] != Null) {
+                        echo '<a type="button" class="btn btn-primary" style="width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" download="' . $row["fichiers"] . '" href="';
+                        echo '/files/' . $row["fichiers"];
+                        echo '">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
+                    </svg>  ' . $row["fichiers"] . '</a>';
+                    }
+
+                    echo '</div><div class="card-footer text-muted d-flex justify-content-between">Écrit par ';
 
                     $stmt2 = $conn->prepare('SELECT nom, prenom FROM users WHERE ID = ?');
                     $stmt2->bind_param("s", $row["auteur"]);
@@ -141,7 +180,7 @@ include '../modules/checkPermissions.php';
                     $issmth = True;
                 }
 
-                if (!$issmth){
+                if (!$issmth) {
                     echo '<div class="text-center m-5 text-muted h2">Rien de nouveau pour le moment !</div>';
                 }
 
@@ -149,7 +188,6 @@ include '../modules/checkPermissions.php';
                 <div class="mb-5" style="height: 100px;"></div>
 
             </div>
-
         </div>
     </div>
 

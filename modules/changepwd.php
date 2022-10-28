@@ -13,7 +13,7 @@
                 <input type="password" class="form-control" id="ConfNewpass" name="ConfNewpass" maxlength="128" placeholder="Confirmer le nouveau mot de passe">
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" name="changepwd" value="" type="submit">Enregistrer</button>
+            <button class="w-100 btn btn-lg btn-primary" name="changepassword" value="" type="submit">Enregistrer</button>
         </form>
         <button class="mt-2 w-100 btn btn-lg btn-danger" name="quit" onclick="hidechangepwd()">Annuler</button>
     </div>
