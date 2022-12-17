@@ -13,6 +13,7 @@
 
     .active {
         fill: white;
+        background-color: #0d6efd;
     }
 
     @media (max-width: 768px) {
@@ -82,7 +83,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown" name="menu">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/accueil/") {echo "active";} ?>" aria-current="page" href="<?php if ($_SERVER['REQUEST_URI'] == "/accueil/") {echo "#";} else {echo "/accueil/";} ?>">Accueil</a>
+          <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/accueil/") {echo "active";} ?>" aria-current="page" href="<?php if (substr($_SERVER['REQUEST_URI'], 0 , 9) == "/accueil/") {echo "#";} else {echo "/accueil/";} ?>">Accueil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/programmes/") {echo "active";} ?>" href="<?php if ($_SERVER['REQUEST_URI'] == "/programmes/") {echo "#";} else {echo "/programmes/";} ?>">Programmes</a>
@@ -113,7 +114,7 @@
         ?>
 
         <?php
-        $page = $_SERVER['REQUEST_URI'];
+        $page = substr($_SERVER['REQUEST_URI'], 0 , 7);
         if($_SESSION["admin"]){
             echo '
             <li class="nav-item">
@@ -163,7 +164,7 @@
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
 
         <li class="nav-item">
-            <a href="<?php if ($_SERVER['REQUEST_URI'] == "/accueil/") {echo "#";} else {echo "/accueil/";} ?>" class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/accueil/") {echo "active";} ?> py-3 border-bottom border-top rounded-0" data-toggle="tooltip" data-placement="right" title="Accueil">
+            <a href="<?php if ($_SERVER['REQUEST_URI'] == "/accueil/") {echo "#";} else {echo "/accueil/";} ?>" class="nav-link <?php if (substr($_SERVER['REQUEST_URI'], 0 , 9) == "/accueil/") {echo "active";} ?> py-3 border-bottom border-top rounded-0" data-toggle="tooltip" data-placement="right" title="Accueil">
                 <svg class="bi pe-none" width="28" height="28" role="img">
                     <use xlink:href="#home"></use>
                 </svg>
@@ -217,10 +218,14 @@
     <?php
     if($_SESSION["admin"]){
         echo '
-        <ul class="nav nav-pills nav-flush flex-column p-3 text-center">
+        <ul class="nav nav-pills nav-flush flex-column p-3 text-center';
+         if (substr($_SERVER['REQUEST_URI'], 0 , 7) == "/admin/") {echo " active ";};
+         echo '">
             <li class="nav-item">   
-            <a href="';
-        if ($_SERVER['REQUEST_URI'] == "/admin/") {echo "#";} else {echo "/admin/";}
+            <a ';
+            if (substr($_SERVER['REQUEST_URI'], 0 , 7) == "/admin/") {echo 'class="active" ';};
+            echo 'href="';
+        if (substr($_SERVER['REQUEST_URI'], 0 , 7) == "/admin/") {echo "#";} else {echo "/admin/";}
         echo '" data-toggle="tooltip" data-placement="right" title="Administration">
                 <svg class="bi pe-none" width="24" height="24" role="img">
                     <use xlink:href="#gear"></use>

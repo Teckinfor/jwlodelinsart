@@ -1,0 +1,230 @@
+{
+    "10": {
+        "special": false,
+        "texteDeLaSemaine": "1\u00a0SAMUEL 12-13",
+        "cantique1": "4",
+        "cantique2": "46",
+        "cantique3": "26",
+        "discourJoyaux": "La pr\u00e9somption conduit au d\u00e9shonneur",
+        "lectureDeLaBibleTexte": "1S 12:1-11",
+        "lectureDeLaBibleLe\u00e7on": "2",
+        "AppliqueToiAuMinistere": {
+            "sujet0Titre": "Vid\u00e9o du premier contact",
+            "sujet0Le\u00e7on": null,
+            "sujet0Desc": " Discussion. Montrer la vid\u00e9o Premier contact\u00a0:  J\u00e9sus ",
+            "sujet0Duree": "5",
+            "sujet1Titre": "Premier contact",
+            "sujet1Le\u00e7on": "1",
+            "sujet1Desc": " Commence par la suggestion de conversation. Surmonte une objection courante dans ton territoire ",
+            "sujet1Duree": "3",
+            "sujet2Titre": "Cours biblique",
+            "sujet2Le\u00e7on": "13",
+            "sujet2Desc": " lff le\u00e7on\u00a004, introduction et id\u00e9es principales\u00a01-2 ",
+            "sujet2Duree": "5"
+        },
+        "VieChr\u00e9tienne": {
+            "sujet0": {
+                "Titre": "L\u2019organisation de Dieu \u00e0 l\u2019\u0153uvre  : Montrer la vid\u00e9o L\u2019organisation de Dieu \u00e0 l\u2019\u0153uvre pr\u00e9vue pour mars.",
+                "Duree": "5"
+            },
+            "sujet1": {
+                "Titre": "Besoins de l\u2019assembl\u00e9e ",
+                "Duree": "10"
+            },
+            "EtudeBiblique": "rr chap.\u00a021 \u00a7\u00a013-18"
+        }
+    },
+    "11": {
+        "special": false,
+        "texteDeLaSemaine": "1\u00a0SAMUEL 14-15",
+        "cantique1": "89",
+        "cantique2": "61",
+        "cantique3": "10",
+        "discourJoyaux": "L\u2019ob\u00e9issance vaut mieux qu\u2019un sacrifice",
+        "lectureDeLaBibleTexte": "1S 15:1-16",
+        "lectureDeLaBibleLe\u00e7on": "2",
+        "AppliqueToiAuMinistere": {
+            "sujet0Titre": "Vid\u00e9o de la nouvelle visite",
+            "sujet0Le\u00e7on": null,
+            "sujet0Desc": " Discussion. Montrer la vid\u00e9o Nouvelle visite\u00a0:  J\u00e9sus ",
+            "sujet0Duree": "5",
+            "sujet1Titre": "Nouvelle visite",
+            "sujet1Le\u00e7on": "3",
+            "sujet1Desc": " Commence par la suggestion de conversation. Propose une publication de la panoplie d\u2019enseignant ",
+            "sujet1Duree": "4",
+            "sujet2Titre": "Nouvelle visite",
+            "sujet2Le\u00e7on": "11",
+            "sujet2Desc": " Commence par la suggestion de conversation. Propose un cours biblique et pr\u00e9sente (sans la visionner) la vid\u00e9o Comment se passe un cours biblique\u00a0? puis discutes-\u200ben avec ton interlocuteur ",
+            "sujet2Duree": "4"
+        },
+        "VieChr\u00e9tienne": {
+            "sujet0": {
+                "Titre": "Samedi 19 mars, coup d\u2019envoi de la campagne d\u2019invitation au M\u00e9morial  : Discussion. Parler bri\u00e8vement du contenu de l\u2019invitation. Indiquer les dispositions prises en rapport avec le discours sp\u00e9cial et le M\u00e9morial, et pour couvrir le territoire. Montrer la vid\u00e9o de la suggestion de pr\u00e9sentation puis en discuter.",
+                "Duree": "19"
+            },
+            "sujet1": {
+                "Titre": "Deviens l\u2019ami de J\u00e9hovah : Ob\u00e9is \u00e0 J\u00e9hovah  : Discussion. Montrer la vid\u00e9o.",
+                "Duree": "5"
+            },
+            "EtudeBiblique": "rr chap.\u00a022 \u00a7\u00a01-9, vid\u00e9o d\u2019introduction"
+        }
+    },
+    "12": {
+        "special": false,
+        "texteDeLaSemaine": "1\u00a0SAMUEL 16-17",
+        "cantique1": "7",
+        "cantique2": "150",
+        "cantique3": "13",
+        "discourJoyaux": "\u00ab\u00a0C\u2019est J\u00e9hovah qui d\u00e9cide de l\u2019issue de la bataille\u00a0\u00bb",
+        "lectureDeLaBibleTexte": "1S 16:1-13",
+        "lectureDeLaBibleLe\u00e7on": "5",
+        "AppliqueToiAuMinistere": {
+            "sujet0Titre": "Invitation au M\u00e9morial",
+            "sujet0Le\u00e7on": "11",
+            "sujet0Desc": " Utilise la suggestion de conversation ",
+            "sujet0Duree": "2",
+            "sujet1Titre": "Invitation au M\u00e9morial",
+            "sujet1Le\u00e7on": "2",
+            "sujet1Desc": " Invite au M\u00e9morial un coll\u00e8gue de travail, un camarade ou un membre de ta famille \u00e0 qui tu as pr\u00each\u00e9 par le pass\u00e9 ",
+            "sujet1Duree": "3",
+            "sujet2Titre": "Nouvelle visite",
+            "sujet2Le\u00e7on": "4",
+            "sujet2Desc": " Nouvelle visite \u00e0 une personne qui a accept\u00e9 l\u2019invitation au M\u00e9morial et manifest\u00e9 de l\u2019int\u00e9r\u00eat ",
+            "sujet2Duree": "3",
+            "sujet3Titre": "Nouvelle visite",
+            "sujet3Le\u00e7on": "20",
+            "sujet3Desc": " Nouvelle visite \u00e0 une personne qui a accept\u00e9 l\u2019invitation au M\u00e9morial et manifest\u00e9 de l\u2019int\u00e9r\u00eat. Invite-\u200bla \u00e0 consulter notre site Internet ",
+            "sujet3Duree": "3"
+        },
+        "VieChr\u00e9tienne": {
+            "sujet0": {
+                "Titre": "\u00ab Trois mani\u00e8res de se reposer sur J\u00e9hovah \u00bb  : Discussion. Montrer la vid\u00e9o N\u2019aie pas peur de la pers\u00e9cution.",
+                "Duree": "15"
+            },
+            "EtudeBiblique": "rr chap.\u00a022 \u00a7\u00a010-22"
+        }
+    },
+    "13": {
+        "special": false,
+        "texteDeLaSemaine": "1\u00a0SAMUEL 18-19",
+        "cantique1": "36",
+        "cantique2": "31",
+        "cantique3": "2",
+        "discourJoyaux": "\u00ab\u00a0Que nos succ\u00e8s ne nous montent pas \u00e0 la t\u00eate\u00a0!\u00a0\u00bb",
+        "lectureDeLaBibleTexte": "1S 18:25\u00a0\u2013\u00a019:7",
+        "lectureDeLaBibleLe\u00e7on": "11",
+        "AppliqueToiAuMinistere": {
+            "sujet0Titre": "Augmente ta joie \u00e0 pr\u00eacher\u00a0: Aide tes \u00e9tudiants \u00e0 abandonner de mauvaises habitudes",
+            "sujet0Le\u00e7on": null,
+            "sujet0Desc": "",
+            "sujet0Duree": "10",
+            "sujet1Titre": "Discours",
+            "sujet1Le\u00e7on": "13",
+            "sujet1Desc": " km 1\/03\u00a01. Th\u00e8me\u00a0:  Une \u0153uvre qui demande de l\u2019humilit\u00e9 ",
+            "sujet1Duree": "5"
+        },
+        "VieChr\u00e9tienne": {
+            "sujet0": {
+                "Titre": "Besoins de l\u2019assembl\u00e9e ",
+                "Duree": "15"
+            },
+            "EtudeBiblique": "rr chap.\u00a022 \u00a7\u00a023-31, encadr\u00e9\u00a022A"
+        }
+    },
+    "14": {
+        "special": false,
+        "texteDeLaSemaine": "1\u00a0SAMUEL 20-22",
+        "cantique1": "90",
+        "cantique2": "85",
+        "cantique3": "95",
+        "discourJoyaux": "Comment agir en v\u00e9ritable ami",
+        "lectureDeLaBibleTexte": "1S 22:1-11",
+        "lectureDeLaBibleLe\u00e7on": "5",
+        "AppliqueToiAuMinistere": {
+            "sujet0Titre": "Nouvelle visite",
+            "sujet0Le\u00e7on": "6",
+            "sujet0Desc": " Nouvelle visite \u00e0 une personne qui a manifest\u00e9 de l\u2019int\u00e9r\u00eat et accept\u00e9 l\u2019invitation au M\u00e9morial ",
+            "sujet0Duree": "2",
+            "sujet1Titre": "Nouvelle visite",
+            "sujet1Le\u00e7on": "12",
+            "sujet1Desc": " Le discours du M\u00e9morial termin\u00e9, engage une conversation avec une personne que tu as invit\u00e9e, et r\u00e9ponds \u00e0 une question qu\u2019elle pose au sujet du programme ",
+            "sujet1Duree": "5",
+            "sujet2Titre": "Cours biblique",
+            "sujet2Le\u00e7on": "20",
+            "sujet2Desc": " lff le\u00e7on\u00a004, id\u00e9e principale\u00a03 ",
+            "sujet2Duree": "5"
+        },
+        "VieChr\u00e9tienne": {
+            "sujet0": {
+                "Titre": "\u00ab Qui sont tes amis sur Internet ? \u00bb  : Discussion. Montrer la vid\u00e9o R\u00e9seaux sociaux : ne te laisse pas avoir !",
+                "Duree": "10"
+            },
+            "sujet1": {
+                "Titre": "Accueillons nos invit\u00e9s  : Par le responsable de la pr\u00e9dication. Discours bas\u00e9 sur l\u2019article du Cahier Vie et minist\u00e8re de mars 2016. Faire le point sur le d\u00e9roulement de la campagne. Attirer l\u2019attention sur le programme de lecture de la Bible pour le M\u00e9morial (pages 10 et 11) et encourager chacun \u00e0 pr\u00e9parer son c\u0153ur \u00e0 cet \u00e9v\u00e8nement (Esd 7:10). Rappeler les dispositions prises pour l\u2019assistance au M\u00e9morial en pr\u00e9sentiel ou par visioconf\u00e9rence.",
+                "Duree": "5"
+            },
+            "EtudeBiblique": "rr R\u00e9capitulatif des compr\u00e9hensions affin\u00e9es, questions\u00a01-4"
+        }
+    },
+    "15": {
+        "special": true
+    },
+    "16": {
+        "special": false,
+        "texteDeLaSemaine": "1\u00a0SAMUEL 23-24",
+        "cantique1": "114",
+        "cantique2": "128",
+        "cantique3": "96",
+        "discourJoyaux": "Attendons patiemment que J\u00e9hovah agisse",
+        "lectureDeLaBibleTexte": "1S 23:24\u00a0\u2013\u00a024:7",
+        "lectureDeLaBibleLe\u00e7on": "10",
+        "AppliqueToiAuMinistere": {
+            "sujet0Titre": "Premier contact",
+            "sujet0Le\u00e7on": "6",
+            "sujet0Desc": " Commence par la suggestion de conversation. Surmonte une objection courante dans ton territoire ",
+            "sujet0Duree": "3",
+            "sujet1Titre": "Nouvelle visite",
+            "sujet1Le\u00e7on": "13",
+            "sujet1Desc": " Commence par la suggestion de conversation. Propose une publication de la panoplie d\u2019enseignant ",
+            "sujet1Duree": "4",
+            "sujet2Titre": "Discours",
+            "sujet2Le\u00e7on": "14",
+            "sujet2Desc": " w19.03 23-24 \u00a7\u00a012-15. Th\u00e8me\u00a0:  Soyons patients avec ceux \u00e0 qui nous pr\u00eachons ",
+            "sujet2Duree": "5"
+        },
+        "VieChr\u00e9tienne": {
+            "sujet0": {
+                "Titre": "\u00ab Toute \u00e9preuve a une date d\u2019expiration ! \u00bb  : Discussion. Montrer la vid\u00e9o Un peuple uni dans un monde divis\u00e9.",
+                "Duree": "15"
+            },
+            "EtudeBiblique": "rr R\u00e9capitulatif des compr\u00e9hensions affin\u00e9es, questions\u00a05-8"
+        }
+    },
+    "17": {
+        "special": false,
+        "texteDeLaSemaine": "1\u00a0SAMUEL 25-26",
+        "cantique1": "130",
+        "cantique2": "126",
+        "cantique3": "98",
+        "discourJoyaux": "\u00ab\u00a0Sommes-\u200bnous impulsifs\u00a0?\u00a0\u00bb",
+        "lectureDeLaBibleTexte": "1S 25:1-13",
+        "lectureDeLaBibleLe\u00e7on": "2",
+        "AppliqueToiAuMinistere": {
+            "sujet0Titre": "Augmente ta joie \u00e0 pr\u00eacher\u00a0: Aide tes \u00e9tudiants de la Bible \u00e0 nouer une relation personnelle avec J\u00e9hovah",
+            "sujet0Le\u00e7on": null,
+            "sujet0Desc": "",
+            "sujet0Duree": "10",
+            "sujet1Titre": "Cours biblique",
+            "sujet1Le\u00e7on": "9",
+            "sujet1Desc": " lff le\u00e7on\u00a004, id\u00e9e principale\u00a04 ",
+            "sujet1Duree": "5"
+        },
+        "VieChr\u00e9tienne": {
+            "sujet0": {
+                "Titre": "Besoins de l\u2019assembl\u00e9e ",
+                "Duree": "15"
+            },
+            "EtudeBiblique": "lff le\u00e7on\u00a001"
+        }
+    }
+}
