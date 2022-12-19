@@ -38,12 +38,17 @@ if (!$_SESSION["admin"]) {
             width: 100%;
             height: 100vh;
             overflow: auto;
+            padding-bottom: 100px;
         }
 
         @media (max-width: 768px) {
 
             #fulldisplay {
                 display: block !important;
+            }
+
+            .box {
+                padding-bottom: 0px;
             }
         }
     </style>
@@ -98,6 +103,24 @@ if (!$_SESSION["admin"]) {
                             ";
                     } ?>
 
+                    <?php
+                    if (isset($_GET["isGenerated"])) {
+                        echo "<div class='alert alert-success' role='alert'>
+                                    Le programme à bien été généré !
+                            </div>
+                            ";
+                    } ?>
+
+                    <?php
+                    if (isset($_GET["havetobegenerated"])) {
+                        echo "<div class='alert alert-danger' role='alert'>
+                                    ERREUR : Le programme auquel vous tentez d'accéder n'est pas encore généré. Si vous avez l'autorisation, commencez par le générer.
+                            </div>
+                            ";
+                    } ?>
+
+
+
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="flush-headingOne">
@@ -134,7 +157,69 @@ if (!$_SESSION["admin"]) {
                             </h2>
                             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-
+                                    <div class="accordion" id="updateprograms">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="vcm">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#vcmcollapse" aria-expanded="false" aria-controls="vcmcollapse">
+                                                    Vie chrétienne et ministère
+                                                </button>
+                                            </h2>
+                                            <div id="vcmcollapse" class="accordion-collapse collapse" aria-labelledby="vcm" data-bs-parent="#updateprograms">
+                                                <div class="accordion-body">
+                                                    <form class="d-flex flex-wrap" action="/modules/updateplanning.php" method="POST">
+                                                        <div class="input-group ms-3 mt-3" style="max-width: 300px; height: calc(3.5rem + 2px);">
+                                                            <label class="input-group-text" for="inputGroupSelect01">Période</label>
+                                                            <select class="form-select" id="inputGroupSelect01" name="months" required>
+                                                                <option value="January&February">Janvier et Février</option>
+                                                                <option value="March&April">Mars et Avril</option>
+                                                                <option value="May&June">Mai et Juin</option>
+                                                                <option value="July&August">Juillet et Août</option>
+                                                                <option value="September&October">Septembre et Octobre</option>
+                                                                <option value="November&December">Novembre et Décembre</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-group ms-3 mt-3" style="max-width: 100px;">
+                                                            <div class="form-floating">
+                                                                <input maxlength="4" type="number" class="form-control" id="floatingInputAnnee" placeholder="Année" name="year" min="2022" max="2030" step="1" value="2022" required>
+                                                                <label for="floatingInputAnnee">Année</label>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-danger ms-3 mt-3">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"></path>
+                                                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"></path>
+                                                            </svg>
+                                                            Modifier
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="redvpredic">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rdvcollapse" aria-expanded="false" aria-controls="rdvcollapse">
+                                                    Accordion Item #2
+                                                </button>
+                                            </h2>
+                                            <div id="rdvcollapse" class="accordion-collapse collapse" aria-labelledby="redvpredic" data-bs-parent="#updateprograms">
+                                                <div class="accordion-body">
+                                                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="jspencore">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jspencorenvrai" aria-expanded="false" aria-controls="jspencorenvrai">
+                                                    Accordion Item #3
+                                                </button>
+                                            </h2>
+                                            <div id="jspencorenvrai" class="accordion-collapse collapse" aria-labelledby="jspencore" data-bs-parent="#updateprograms">
+                                                <div class="accordion-body">
+                                                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -193,22 +278,42 @@ if (!$_SESSION["admin"]) {
                                                             </div>
                                                         </div>
                                                         <div class="d-flex m-2 justify-content-center flex-wrap">
+                                                            <div id="checkboxecole" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
+                                                                <input type="checkbox" id="ecole" name="ecole" value="yes">
+                                                                <label for="ecole" class="m-1">Ecole</label>
+                                                            </div>
+                                                            <div id="checkboxfrere" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
+                                                                <input type="checkbox" id="Frère" name="Frère" value="yes">
+                                                                <label for="Frère" class="m-1">Frère</label>
+                                                            </div>
+                                                            <div id="checkboxassistant" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
+                                                                <input type="checkbox" id="assistant" name="assistant" value="yes">
+                                                                <label for="assistant" class="m-1">Assistant</label>
+                                                            </div>
+                                                            <div id="checkboxancien" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
+                                                                <input type="checkbox" id="ancien" name="ancien" value="yes">
+                                                                <label for="ancien" class="m-1">Ancien</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex m-2 justify-content-center flex-wrap">
+                                                            
                                                             <div id="checkboxadmin" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
                                                                 <input type="checkbox" id="isAdmin" name="isAdmin" value="yes">
                                                                 <label for="isAdmin" class="m-1">Administrateur</label>
                                                             </div>
                                                             <div id="checkboxpresentoir" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient ">
-                                                                <input type="checkbox" id="presentoir" name="presentoir" value="yes">
-                                                                <label for="isAdmin" class="m-1">Accès aux présentoirs</label>
+                                                            <input type="checkbox" id="presentoir" name="presentoir" value="yes">
+                                                                <label for="presentoir" class="m-1">Accès aux présentoirs</label>
                                                             </div>
                                                             <div id="checkboxsono" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
                                                                 <input type="checkbox" id="sono" name="sono" value="yes">
                                                                 <label for="sono" class="m-1">Accès aux programmes sono</label>
                                                             </div>
-                                                            <div id="checkboxsono" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
+                                                            <div id="checkboxsono2" class="d-flex px-2 py-1 m-2 text-light rounded-3 bg-secondary bg-gradient">
                                                                 <input type="checkbox" id="admsono" name="admsono" value="yes">
                                                                 <label for="admsono" class="m-1">Modification des programmes sono</label>
                                                             </div>
+
                                                         </div>
                                                         <hr class="opacity-75">
                                                         <div class="d-flex m-2 justify-content-center flex-wrap">

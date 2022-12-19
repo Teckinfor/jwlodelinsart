@@ -116,6 +116,26 @@ if (isset($_POST["adduser"])) {
         } else {
             $admsono = 0;
         }
+        if(isset($_POST["ecole"])){
+            $ecole = 1;
+        } else {
+            $ecole = 0;
+        }
+        if(isset($_POST["Frère"])){
+            $Frère = 1;
+        } else {
+            $Frère = 0;
+        }
+        if(isset($_POST["assistant"])){
+            $assistant = 1;
+        } else {
+            $assistant = 0;
+        }
+        if(isset($_POST["ancien"])){
+            $ancien = 1;
+        } else {
+            $ancien = 0;
+        }
 
         $ID = strtolower($_POST["login"]);
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
@@ -126,8 +146,8 @@ if (isset($_POST["adduser"])) {
 
     }
 
-    $stmt = $conn->prepare('INSERT INTO `users`(`ID`, `password`, `nom`, `prenom`, `assemblee`, `admin`, `presentoir`, `sono`, `sonoadm`) VALUES (?,?,?,?,?,?,?,?,?)');
-    $stmt->bind_param('sssssssss', $ID, $password, $nom, $prenom, $assemblee, $isAdmin, $presentoir, $sono, $admsono);
+    $stmt = $conn->prepare('INSERT INTO `users`(`ID`, `password`, `nom`, `prenom`, `assemblee`, `admin`, `presentoir`, `sono`, `sonoadm`, `ecole`, `frere`, `assistant`, `ancien`) VALUES (?,?,?,?,?,?,?,?,?)');
+    $stmt->bind_param('sssssssss', $ID, $password, $nom, $prenom, $assemblee, $isAdmin, $presentoir, $sono, $admsono, $ecole, $Frère, $assistant, $ancien);
     $stmt->execute();
     $stmt->close();
 

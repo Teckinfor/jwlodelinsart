@@ -128,7 +128,7 @@ if ($errorMsg == Null) {
     $count = $weeksToFetch[0];
     $fullContent = array();
 
-    if (!file_exists("./programmes/" . $_POST["year"] . $_POST["months"])) {
+    if (!file_exists("./programmes/" . $_POST["year"] . $_POST["months"] . ".json")) {
 
 
         while ($count <= $weeksToFetch[3] && $errorMsg == Null) {
@@ -150,11 +150,19 @@ if ($errorMsg == Null) {
                     // $content["date"]["jour"] = intval($match[0][0]) + 2;
                     // preg_match_all('/\s[a-zA-Z]{1,100}/', $tempVar, $match, PREG_SET_ORDER, 0);
                     // $content["date"]["mois"] = $match[0][0];
+                    $content["date"] = replaceNbspWithSpace($program->getElementById("p1")->childNodes[1]->textContent);
 
                     $content["special"] = False;
 
                     // Portion de la bible pour la semaine
                     $content["texteDeLaSemaine"] = $program->getElementById("p2")->firstChild->textContent;
+
+                    // Prières
+                    $content["prière1"] = "";
+                    $content["prière2"] = "";
+
+                    // Président
+                    $content["président"] = "";
 
                     // Cantiques
                     $content["cantique1"] = explode(chr(0xC2) . chr(0xA0), $program->getElementById("section1")->childNodes[1]->childNodes[1]->childNodes[0]->childNodes[0]->childNodes[0]->textContent, 2)[1];
@@ -163,14 +171,21 @@ if ($errorMsg == Null) {
 
                     // Discours des joyaux
                     if (isset($program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->textContent)) {
-                        $content["discourJoyaux"] = $program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->textContent;
+                        $content["discourJoyauxTitre"] = $program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->textContent;
                     } else {
-                        $content["discourJoyaux"] = $program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes[0]->childNodes[0]->childNodes[0]->childNodes[0]->textContent;
+                        $content["discourJoyauxTitre"] = $program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes[0]->childNodes[0]->childNodes[0]->childNodes[0]->textContent;
                     }
+
+                    $content["discourJoyauxOrateur"] = "";
+
+                    // Perles spirituelles
+                    $content["PerlesSpirituellesTitre"] = "Recherchons les perles spirituelles";
+                    $content["PerlesSpirituellesOrateur"] = "";
 
                     // Lecture de la bible
                     $content["lectureDeLaBibleTexte"] = $program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes[count($program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes) - 2]->childNodes[0]->childNodes[2]->textContent;
                     $content["lectureDeLaBibleLeçon"] = explode(chr(0xC2) . chr(0xA0), $program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes[count($program->getElementById("section2")->childNodes[3]->childNodes[1]->childNodes) - 2]->childNodes[0]->childNodes[4]->childNodes[1]->textContent, 2)[1];
+                    $content["lectureDeLaBibleLeçonLecteur"] = "";
 
                     $content["AppliqueToiAuMinistere"] = array();
 
@@ -179,67 +194,75 @@ if ($errorMsg == Null) {
                     foreach ($program->getElementById("section3")->childNodes[3]->childNodes[1]->childNodes as $sujet) {
                         if (isset($sujet->firstChild)) {
 
+                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet] = array();
+
                             // Titre du sujet
                             if (isset($sujet->firstChild->childNodes[2]->childNodes[0]->firstChild->length)) {
                                 if ($sujet->firstChild->childNodes[2]->childNodes[0]->firstChild->length > 30) {
-                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Titre"] = $sujet->firstChild->childNodes[2]->childNodes[0]->firstChild->textContent;
+                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Titre"] = $sujet->firstChild->childNodes[2]->childNodes[0]->firstChild->textContent;
                                 } else {
-                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Titre"] = $sujet->firstChild->firstChild->firstChild->textContent;
+                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Titre"] = $sujet->firstChild->firstChild->firstChild->textContent;
                                 }
                             } else {
-                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Titre"] = $sujet->firstChild->firstChild->firstChild->textContent;
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Titre"] = $sujet->firstChild->firstChild->firstChild->textContent;
                             }
 
                             // Leçon du sujet
                             if (strpos($sujet->firstChild->childNodes[count($sujet->firstChild->childNodes) - 2]->textContent, "th") !== false) {
-                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Leçon"] = $sujet->firstChild->childNodes[count($sujet->firstChild->childNodes) - 2]->textContent;
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Leçon"] = $sujet->firstChild->childNodes[count($sujet->firstChild->childNodes) - 2]->textContent;
                             } else {
-                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Leçon"] = null;
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Leçon"]  = null;
                             }
 
-                            if ($content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Leçon"] != null) {
+                            if ($content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Leçon"]  != null) {
                                 $re = '/([\d]{1,2})/';
-                                $string = strval($content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Leçon"]);
+                                $string = strval($content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Leçon"] );
                                 preg_match_all($re, $string, $match, PREG_SET_ORDER, 0);
-                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Leçon"] = $match[0][0];
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Leçon"]  = $match[0][0];
                             }
 
                             // Description du sujet
-                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = "";
+                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"]  = "";
                             foreach ($sujet->firstChild->childNodes as $data) {
                                 if (isset($data->textContent)) {
-                                    if ($data->textContent != $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Titre"]) {
-                                        $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] . $data->textContent;
+                                    if ($data->textContent != $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Titre"]) {
+                                        $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] . $data->textContent;
                                     }
                                 }
                             }
 
                             // Durée du sujet
 
-                            if (strpos($content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"], "min)") !== false) {
+                            if (strpos($content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"], "min)") !== false) {
                                 $re = '/([\d]{1,2})/';
-                                $string = strval($content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"]);
+                                $string = strval($content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"]);
                                 preg_match_all($re, $string, $match, PREG_SET_ORDER, 0);
-                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Duree"] = $match[0][0];
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Duree"] = $match[0][0];
                             }
 
                             // Suppression des () pour le temps et les leçons
-                            $tempVar = explode(":", $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"]);
-                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = "";
+                            $tempVar = explode(":", $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"]);
+                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] = "";
                             for ($i = 1; $i < count($tempVar); $i++) {
                                 if ($i > 1) {
-                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] . ": ";
+                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] . ": ";
                                 }
-                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] . $tempVar[$i];
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] . $tempVar[$i];
                             }
 
-                            $tempVar = explode("(", $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"]);
-                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = "";
+                            $tempVar = explode("(", $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"]);
+                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] = "";
                             for ($i = 0; $i < count($tempVar) - 1; $i++) {
                                 if ($i > 0) {
-                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] . "(";
+                                    $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] . "(";
                                 }
-                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet . "Desc"] . $tempVar[$i];
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] = $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Desc"] . $tempVar[$i];
+                            }
+
+                            // Participants
+                            $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Participant1"] = "";
+                            if ($content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Titre"] != "Discours") {
+                                $content["AppliqueToiAuMinistere"]["sujet" . $countSujet]["Participant2"] = "";
                             }
 
                             $countSujet++;
@@ -270,6 +293,10 @@ if ($errorMsg == Null) {
                             $text = replaceNbspWithSpace($content["VieChrétienne"]["sujet" . $countSujet]["Titre"]);
                             $content["VieChrétienne"]["sujet" . $countSujet]["Titre"] = preg_replace($regx, "", $text);
                             $countSujet++;
+
+                            // Ajout des participants
+                            $content["VieChrétienne"]["sujet" . $countSujet]["Participant"] = "";
+
                         }
                     }
 
@@ -278,22 +305,30 @@ if ($errorMsg == Null) {
                     unset($content["VieChrétienne"]["sujet" . count($content["VieChrétienne"]) - 1]);
                     unset($content["VieChrétienne"]["sujet" . count($content["VieChrétienne"]) - 1]);
                     unset($content["VieChrétienne"]["sujet" . count($content["VieChrétienne"]) - 1]);
+                    unset($content["VieChrétienne"]["sujet" . count($content["VieChrétienne"]) - 1]);
 
                     // Ajout de l'etude biblique
 
                     $nbsujet = count($program->getElementById("section4")->childNodes[3]->childNodes[1]->childNodes);
                     $countelement = count($program->getElementById("section4")->childNodes[3]->childNodes[1]->childNodes[$nbsujet - 6]->firstChild->childNodes);
-                    $content["VieChrétienne"]["EtudeBiblique"] = "";
+                    $content["EtudeBiblique"] = "";
                     for ($i = 2; $i < $countelement; $i++) {
-                        $content["VieChrétienne"]["EtudeBiblique"] = $content["VieChrétienne"]["EtudeBiblique"] . $program->getElementById("section4")->childNodes[3]->childNodes[1]->childNodes[$nbsujet - 6]->firstChild->childNodes[$i]->textContent;
+                        $content["EtudeBiblique"] = $content["EtudeBiblique"] . $program->getElementById("section4")->childNodes[3]->childNodes[1]->childNodes[$nbsujet - 6]->firstChild->childNodes[$i]->textContent;
                     }
 
+                    // President de l'etude
+                    $content["EtudeBibliquePresident"] = "";
 
-                    print_r($content);
-                    echo "<br>";
-                    echo "<br>";
+                    // Lecteur de l'etude
+                    $content["EtudeBibliqueLecteur"] = "";
+
+
+                    // print_r($content);
+                    // echo "<br>";
+                    // echo "<br>";
                 } else {
                     $content["special"] = True;
+                    $content["reason"] = "";
                     // print_r($content);
                     // echo "<br>";
                     // echo "<br>";
@@ -304,18 +339,14 @@ if ($errorMsg == Null) {
         }
 
         $document = json_encode($fullContent);
-        file_put_contents("./programmes/" . $_POST["year"] . $_POST["months"], $document);
+        file_put_contents("./programmes/" . $_POST["year"] . $_POST["months"] . ".json", $document);
     }
 }
 
-// 3ème partie : Création de la nouvelle sheet
+if ($errorMsg == Null) {
 
-
-
-
-// 4ème partie : Mise en page de la nouvelle sheet
-
-// 5ème partie : Fin du script et renvoi d'un message à l'utilisateur
-
+    header("Location: ../admin/?isGenerated");
+    
+}
 
 echo $errorMsg;
